@@ -1,7 +1,8 @@
 ﻿using System;
 using Unity.Collections;
+using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Cache of instance id -> label entry index for a LabelConfig. This is not well optimized and is the source of

@@ -4,7 +4,7 @@ using UnityEditor;
 using UnityEngine;
 using UnityEngine.Rendering.Universal;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     public class PerceptionRendererFeature : ScriptableRendererFeature
     {

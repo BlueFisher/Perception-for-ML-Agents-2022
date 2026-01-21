@@ -3,12 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 
 using Unity.Collections;
-
+using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     public struct BoundingBoxInfo : IEquatable<BoundingBoxInfo>
     {
@@ -67,6 +67,8 @@ namespace UnityEngine.Perception.GroundTruth
         public event Action<List<BoundingBoxInfo>> RenderedObjectInfosCalculated;
         public Camera Camera { get { return m_Camera; } }
 
+        InstanceSegmentationUrpPass m_InstanceSegmentationPass;
+
         public void Start()
         {
             Camera camera = GetComponent<Camera>();
@@ -92,17 +94,17 @@ namespace UnityEngine.Perception.GroundTruth
                 TestVisualElement.style.backgroundImage = new StyleBackground(Background.FromRenderTexture(m_InstanceSegmentationTexture));
             }
 
-            InstanceSegmentationUrpPass instanceSegmentationPass = new InstanceSegmentationUrpPass(camera, m_InstanceSegmentationTexture);
-            passes.Add(instanceSegmentationPass);
+            m_InstanceSegmentationPass = new InstanceSegmentationUrpPass(camera, m_InstanceSegmentationTexture);
+            passes.Add(m_InstanceSegmentationPass);
 
-            RenderPipelineManager.endFrameRendering += OnEndFrameRendering;
+            RenderPipelineManager.endContextRendering += OnEndContextRendering;
         }
 
-        void OnEndFrameRendering(ScriptableRenderContext scriptableRenderContext, Camera[] cameras)
+        void OnEndContextRendering(ScriptableRenderContext scriptableRenderContext, List<Camera> cameras)
         {
             if (Application.isPlaying)
             {
-                if (ManuallyCapture && !ShouldCapture || !ManuallyCapture && m_LastFrameEndRendering == Time.frameCount)
+                if (EnableManuallyCapture && !ShouldManuallyCapture || !EnableManuallyCapture && m_LastFrameEndRendering == Time.frameCount)
                     return;
 
                 if (TestRawImage != null && TestRawImage != m_TestRawImage)
@@ -111,10 +113,10 @@ namespace UnityEngine.Perception.GroundTruth
                     m_TestRawImage = TestRawImage;
                 }
 
-                ShouldCapture = false;
+                ShouldManuallyCapture = false;
                 m_LastFrameEndRendering = Time.frameCount;
 
-                if (!cameras.Any(c => c == m_Camera))
+                if (!cameras.Contains(m_Camera))
                     return;
 
                 var width = m_InstanceSegmentationTexture.width;
@@ -139,8 +141,7 @@ namespace UnityEngine.Perception.GroundTruth
                 for (var i = 0; i < renderedObjectInfos.Length; i++)
                 {
                     var info = renderedObjectInfos[i];
-                    IdLabelEntry idLabelEntry;
-                    IdLabelConfig.TryGetLabelEntryFromInstanceId(info.instanceId, out idLabelEntry);
+                    IdLabelConfig.TryGetLabelEntryFromInstanceId(info.instanceId, out IdLabelEntry idLabelEntry);
                     var semanticSegamentationLabelEntries = SemanticSegmentationLabelConfig.labelEntries.Where(p => p.label == idLabelEntry.label).ToList();
                     if (semanticSegamentationLabelEntries.Count > 0)
                     {

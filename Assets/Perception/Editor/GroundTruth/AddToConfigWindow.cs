@@ -2,14 +2,16 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using UnityEditor.UIElements;
-using UnityEngine;
-using UnityEngine.Perception.GroundTruth;
-using UnityEngine.UIElements;
-using Object = UnityEngine.Object;
-using Random = UnityEngine.Random;
 
-namespace UnityEditor.Perception.GroundTruth
+using UnityEditor;
+using UnityEditor.UIElements;
+
+using UnityEngine;
+using UnityEngine.UIElements;
+
+using Object = UnityEngine.Object;
+
+namespace Perception.GroundTruth
 {
     class AddToConfigWindow : EditorWindow
     {
@@ -59,7 +61,7 @@ namespace UnityEditor.Perception.GroundTruth
             if (labelValues.Count == 1)
             {
 
-                if(s_TitleLabel != null)
+                if (s_TitleLabel != null)
                     s_TitleLabel.text = "Label: \"" + s_LabelValues.First() + "\"";
 
                 if (s_PresentConfigsListview != null)
@@ -93,7 +95,7 @@ namespace UnityEditor.Perception.GroundTruth
             }
             else
             {
-                if(s_TitleLabel != null)
+                if (s_TitleLabel != null)
                     s_TitleLabel.text = "Labels to Add";
 
                 if (s_PresentConfigsListview != null)
@@ -140,7 +142,7 @@ namespace UnityEditor.Perception.GroundTruth
             m_LabelConfigTypes = FindAllSubTypes(typeof(LabelConfig<>));
 
             RefreshConfigAssets();
-            CheckInclusionInConfigs(m_AllLabelConfigGuids, s_LabelValues.Count == 1? s_LabelValues.First() : null);
+            CheckInclusionInConfigs(m_AllLabelConfigGuids, s_LabelValues.Count == 1 ? s_LabelValues.First() : null);
             SetupListViews();
         }
 
@@ -226,7 +228,7 @@ namespace UnityEditor.Perception.GroundTruth
 
         public void RefreshLists()
         {
-            CheckInclusionInConfigs(m_AllLabelConfigGuids, s_LabelValues.Count == 1? s_LabelValues.First() : null);
+            CheckInclusionInConfigs(m_AllLabelConfigGuids, s_LabelValues.Count == 1 ? s_LabelValues.First() : null);
             s_PresentConfigsListview.Rebuild();
             s_NonPresentConfigsListview.Rebuild();
         }
@@ -266,7 +268,7 @@ namespace UnityEditor.Perception.GroundTruth
                     object[] parametersArray = new object[1];
                     parametersArray[0] = label;
 
-                    var labelExistsInConfig = (bool) methodInfo.Invoke(asset, parametersArray);
+                    var labelExistsInConfig = (bool)methodInfo.Invoke(asset, parametersArray);
 
                     if (labelExistsInConfig)
                     {
@@ -292,10 +294,13 @@ namespace UnityEditor.Perception.GroundTruth
             return subclasses;
 
 
-            bool IsSubclassOfRawGeneric(Type generic, Type toCheck) {
-                while (toCheck != null && toCheck != typeof(object)) {
+            bool IsSubclassOfRawGeneric(Type generic, Type toCheck)
+            {
+                while (toCheck != null && toCheck != typeof(object))
+                {
                     var cur = toCheck.IsGenericType ? toCheck.GetGenericTypeDefinition() : toCheck;
-                    if (generic == cur) {
+                    if (generic == cur)
+                    {
                         return true;
                     }
                     toCheck = toCheck.BaseType;
@@ -361,7 +366,7 @@ namespace UnityEditor.Perception.GroundTruth
             AssetDatabase.LoadAssetAtPath<VisualTreeAsset>(uxmlPath).CloneTree(this);
             labelElement = this.Q<Label>("config-name");
             var addButton = this.Q<Button>("remove-from-config-button");
-            addButton.text = targetLabels.Count ==1 ? "Add Label" : "Add All Labels";
+            addButton.text = targetLabels.Count == 1 ? "Add Label" : "Add All Labels";
 
             var openButton = this.Q<Button>("open-config-button");
             openButton.clicked += () =>

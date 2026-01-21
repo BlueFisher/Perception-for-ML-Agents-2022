@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth {
+namespace Perception.GroundTruth {
     /// <summary>
     /// A definition for how a <see cref="Labeling"/> should be resolved to a single label and color for semantic segmentation generation.
     /// </summary>

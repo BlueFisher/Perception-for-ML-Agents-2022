@@ -360,9 +360,9 @@ GameObject:
   - component: {fileID: 330585545}
   - component: {fileID: 330585544}
   - component: {fileID: 330585547}
-  - component: {fileID: 330585550}
   - component: {fileID: 330585548}
   - component: {fileID: 330585549}
+  - component: {fileID: 330585550}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -500,8 +500,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6f851bfca99b171458b78d581e79053c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ManuallyCapture: 0
-  ShouldCapture: 1
+  EnableManuallyCapture: 0
+  ShouldManuallyCapture: 1
   TestRawImage: {fileID: 2082791725}
   IdLabelConfig: {fileID: 11400000, guid: daba0c90eccddc642894f789c0c5a58c, type: 2}
   SemanticSegmentationLabelConfig: {fileID: 11400000, guid: 6a79130fd57cb8045a89fe4f717f43d6,
@@ -518,8 +518,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6a1d7956017bdcc4fbbc9b18f8bf18d9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ManuallyCapture: 0
-  ShouldCapture: 1
+  EnableManuallyCapture: 0
+  ShouldManuallyCapture: 1
   TestRawImage: {fileID: 2106551920}
   SemanticSegmentationLabelConfig: {fileID: 11400000, guid: 6a79130fd57cb8045a89fe4f717f43d6,
     type: 2}
@@ -535,8 +535,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 54fb6e769266f224fa03248da609a2a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ManuallyCapture: 0
-  ShouldCapture: 1
+  EnableManuallyCapture: 0
+  ShouldManuallyCapture: 1
   TestRawImage: {fileID: 1349097222}
 --- !u!1 &410087039
 GameObject:

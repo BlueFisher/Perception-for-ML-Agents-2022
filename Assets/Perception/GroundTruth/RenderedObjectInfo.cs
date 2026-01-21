@@ -1,6 +1,7 @@
 using System;
+using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Describes an instance of an object in an instance segmentation frame.

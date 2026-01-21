@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Interface for setting up Renderers for ground truth generation via <see cref="LabelManager"/>.

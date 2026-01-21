@@ -5,8 +5,9 @@ using Unity.Collections.LowLevel.Unsafe;
 using Unity.Jobs;
 using Unity.Mathematics;
 using Unity.Profiling;
+using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// A CPU-based pass which computes bounding box and pixel counts per-object from instance segmentation images

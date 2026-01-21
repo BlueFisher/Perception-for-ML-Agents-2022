@@ -2,9 +2,8 @@
 
 using System;
 using UnityEditor.Rendering.HighDefinition;
-using UnityEngine.Perception.GroundTruth;
 
-namespace UnityEditor.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     [CustomPassDrawer(typeof(SemanticSegmentationPass))]
     class SemanticSegmentationPassEditor : BaseCustomPassDrawer

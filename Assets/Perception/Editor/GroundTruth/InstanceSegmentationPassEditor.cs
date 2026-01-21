@@ -1,8 +1,8 @@
 #if HDRP_PRESENT
 using UnityEditor.Rendering.HighDefinition;
-using UnityEngine.Perception.GroundTruth;
+using Perception.GroundTruth;
 
-namespace UnityEditor.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     [CustomPassDrawer(typeof(InstanceSegmentationPass))]
     public class InstanceSegmentationPassEditor : BaseCustomPassDrawer

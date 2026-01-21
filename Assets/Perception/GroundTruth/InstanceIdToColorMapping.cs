@@ -1,8 +1,9 @@
 using System;
 using System.Collections.Generic;
 using Unity.Profiling;
+using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Static class to procedurally generate a unique color for an instance ID. This algorithm

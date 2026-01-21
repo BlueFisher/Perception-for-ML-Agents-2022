@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UnityEngine.Perception.GroundTruth {
+namespace Perception.GroundTruth {
     /// <summary>
     /// An entry for <see cref="IdLabelConfig"/> mapping a label to an integer id.
     /// </summary>

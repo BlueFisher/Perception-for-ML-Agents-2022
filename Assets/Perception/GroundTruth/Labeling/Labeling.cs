@@ -1,9 +1,10 @@
 using System;
 using System.Collections.Generic;
 using UnityEditor;
+using UnityEngine;
 using UnityEngine.Serialization;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Defines a set of labels associated with the object and its descendants. A Labeling component will override any Labeling components on the object's ancestors.

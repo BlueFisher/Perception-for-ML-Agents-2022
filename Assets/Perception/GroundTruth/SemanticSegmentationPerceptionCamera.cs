@@ -1,11 +1,13 @@
 using System;
+using System.Collections.Generic;
 using System.Linq;
-
+using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
+    
     public class SemanticSegmentationPerceptionCamera : PerceptionCamera
     {
         public SemanticSegmentationLabelConfig SemanticSegmentationLabelConfig;
@@ -17,6 +19,8 @@ namespace UnityEngine.Perception.GroundTruth
         public event Action RenderedObjectInfosCalculated;
         public RenderTexture SemanticSegmentationTexture => m_SemanticSegmentationTexture;
         public Camera Camera { get { return m_Camera; } }
+
+        SemanticSegmentationUrpPass m_SemanticSegmentationPass;
 
         public void Start()
         {
@@ -41,17 +45,18 @@ namespace UnityEngine.Perception.GroundTruth
                 TestVisualElement.style.backgroundImage = new StyleBackground(Background.FromRenderTexture(m_SemanticSegmentationTexture));
             }
 
-            SemanticSegmentationUrpPass semanticSegmentationPass = new SemanticSegmentationUrpPass(m_Camera, m_SemanticSegmentationTexture, SemanticSegmentationLabelConfig);
-            passes.Add(semanticSegmentationPass);
+            m_SemanticSegmentationPass = new SemanticSegmentationUrpPass(m_Camera, m_SemanticSegmentationTexture, SemanticSegmentationLabelConfig);
+            passes.Add(m_SemanticSegmentationPass);
 
-            RenderPipelineManager.endFrameRendering += OnEndFrameRendering;
+            RenderPipelineManager.endContextRendering += OnEndContextRendering;
         }
 
-        void OnEndFrameRendering(ScriptableRenderContext scriptableRenderContext, Camera[] cameras)
+        void OnEndContextRendering(ScriptableRenderContext scriptableRenderContext, List<Camera> cameras)
         {
             if (Application.isPlaying)
             {
-                if (ManuallyCapture && !ShouldCapture || !ManuallyCapture && m_LastFrameEndRendering == Time.frameCount)
+                if (EnableManuallyCapture && !ShouldManuallyCapture 
+                    || !EnableManuallyCapture && m_LastFrameEndRendering == Time.frameCount)
                     return;
 
                 if (TestRawImage != null && TestRawImage != m_TestRawImage)
@@ -60,10 +65,10 @@ namespace UnityEngine.Perception.GroundTruth
                     m_TestRawImage = TestRawImage;
                 }
 
-                ShouldCapture = false;
+                ShouldManuallyCapture = false;
                 m_LastFrameEndRendering = Time.frameCount;
 
-                if (!cameras.Any(c => c == m_Camera))
+                if (!cameras.Contains(m_Camera))
                     return;
 
                 RenderedObjectInfosCalculated?.Invoke();

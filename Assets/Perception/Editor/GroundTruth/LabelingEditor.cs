@@ -2,14 +2,16 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
-using UnityEditor.UIElements;
+
+using UnityEditor;
+
 using UnityEngine;
-using UnityEngine.Perception.GroundTruth;
 using UnityEngine.UIElements;
+
 using Button = UnityEngine.UIElements.Button;
 using Toggle = UnityEngine.UIElements.Toggle;
 
-namespace UnityEditor.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     [CustomEditor(typeof(Labeling)), CanEditMultipleObjects]
     class LabelingEditor : Editor

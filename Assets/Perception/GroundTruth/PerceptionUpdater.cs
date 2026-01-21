@@ -1,4 +1,6 @@
-﻿namespace UnityEngine.Perception.GroundTruth
+﻿using UnityEngine;
+
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// PerceptionUpdater is automatically spawned when the player starts and is used to coordinate and maintain

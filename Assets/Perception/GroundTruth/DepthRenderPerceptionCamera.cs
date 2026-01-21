@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Rendering;
 using UnityEngine.UIElements;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     public class DepthRenderPerceptionCamera : PerceptionCamera
     {
@@ -45,14 +45,15 @@ namespace UnityEngine.Perception.GroundTruth
             m_DepthPerceptionPass = new DepthRenderUrpPass(m_DepthRenderTexture);
             passes.Add(m_DepthPerceptionPass);
 
-            RenderPipelineManager.endFrameRendering += OnEndFrameRendering;
+            RenderPipelineManager.endContextRendering += OnEndContextRendering;
         }
 
-        void OnEndFrameRendering(ScriptableRenderContext scriptableRenderContext, Camera[] cameras)
+        void OnEndContextRendering(ScriptableRenderContext scriptableRenderContext, List<Camera> cameras)
         {
             if (Application.isPlaying)
             {
-                if (ManuallyCapture && !ShouldCapture || !ManuallyCapture && m_LastFrameEndRendering == Time.frameCount)
+                if (EnableManuallyCapture && !ShouldManuallyCapture
+                    || !EnableManuallyCapture && m_LastFrameEndRendering == Time.frameCount)
                     return;
 
                 if (TestRawImage != null && TestRawImage != m_TestRawImage)
@@ -61,10 +62,10 @@ namespace UnityEngine.Perception.GroundTruth
                     m_TestRawImage = TestRawImage;
                 }
 
-                ShouldCapture = false;
+                ShouldManuallyCapture = false;
                 m_LastFrameEndRendering = Time.frameCount;
 
-                if (!cameras.Any(c => c == m_Camera))
+                if (!cameras.Contains(m_Camera))
                     return;
 
                 RenderedObjectInfosCalculated?.Invoke();

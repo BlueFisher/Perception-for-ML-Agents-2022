@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
+
 using JetBrains.Annotations;
-using Newtonsoft.Json;
+
 using Unity.Collections;
 
-namespace UnityEngine.Perception.GroundTruth {
+using UnityEngine;
+
+namespace Perception.GroundTruth {
     /// <summary>
     /// A definition for how a <see cref="Labeling"/> should be resolved to a single label and id for ground truth generation.
     /// </summary>

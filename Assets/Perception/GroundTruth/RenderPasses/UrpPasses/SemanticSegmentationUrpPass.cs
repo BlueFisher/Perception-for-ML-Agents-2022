@@ -1,7 +1,8 @@
-﻿using UnityEngine.Rendering;
+﻿using UnityEngine;
+using UnityEngine.Rendering;
 using UnityEngine.Rendering.Universal;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     public class SemanticSegmentationUrpPass : ScriptableRenderPass
     {

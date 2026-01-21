@@ -5,7 +5,7 @@ using UnityEngine;
 using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     class InstanceSegmentationCrossPipelinePass : GroundTruthCrossPipelinePass
     {

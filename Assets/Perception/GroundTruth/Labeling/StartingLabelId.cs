@@ -1,6 +1,7 @@
 ﻿using System;
+using UnityEngine;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Selector for whether label ids should start at zero or one. <seealso cref="IdLabelConfig.startingLabelId"/>.

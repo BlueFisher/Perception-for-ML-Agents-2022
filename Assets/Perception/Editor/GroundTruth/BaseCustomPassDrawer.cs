@@ -5,7 +5,7 @@ using System.Collections.Generic;
 using UnityEditor.Rendering.HighDefinition;
 using UnityEngine;
 
-namespace UnityEditor.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     public class BaseCustomPassDrawer : CustomPassDrawer
     {

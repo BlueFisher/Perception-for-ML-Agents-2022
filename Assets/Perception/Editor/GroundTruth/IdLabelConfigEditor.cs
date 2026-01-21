@@ -1,11 +1,14 @@
 ﻿using System;
+
 using Unity.Mathematics;
+
+using UnityEditor;
 using UnityEditor.UIElements;
+
 using UnityEngine;
-using UnityEngine.Perception.GroundTruth;
 using UnityEngine.UIElements;
 
-namespace UnityEditor.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     [CustomEditor(typeof(IdLabelConfig))]
     class IdLabelConfigEditor : LabelConfigEditor<IdLabelEntry>

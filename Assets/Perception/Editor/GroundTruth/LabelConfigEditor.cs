@@ -1,13 +1,12 @@
 ﻿using System.Collections.Generic;
-using System.IO;
 using System.Linq;
-using Newtonsoft.Json.Linq;
-using UnityEngine;
-using UnityEngine.Perception.GroundTruth;
-using UnityEngine.UIElements;
-using UnityEditor.UIElements;
 
-namespace UnityEditor.Perception.GroundTruth
+using UnityEditor;
+
+using UnityEngine;
+using UnityEngine.UIElements;
+
+namespace Perception.GroundTruth
 {
     abstract class LabelConfigEditor<T> : Editor where T : ILabelEntry
     {

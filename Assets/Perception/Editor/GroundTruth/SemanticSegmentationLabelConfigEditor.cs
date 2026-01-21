@@ -1,12 +1,15 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+
+using UnityEditor;
 using UnityEditor.UIElements;
+
 using UnityEngine;
-using UnityEngine.Perception.GroundTruth;
 using UnityEngine.UIElements;
+
 using Random = UnityEngine.Random;
 
-namespace UnityEditor.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     [CustomEditor(typeof(SemanticSegmentationLabelConfig))]
     class SemanticSegmentationLabelConfigEditor : LabelConfigEditor<SemanticSegmentationLabelEntry>

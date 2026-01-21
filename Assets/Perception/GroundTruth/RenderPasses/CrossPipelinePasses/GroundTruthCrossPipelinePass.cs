@@ -4,7 +4,7 @@ using UnityEngine.Experimental.Rendering;
 using UnityEngine.Rendering;
 using UnityEngine.Rendering.RendererUtils;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     abstract public class GroundTruthCrossPipelinePass : IGroundTruthGenerator
     {

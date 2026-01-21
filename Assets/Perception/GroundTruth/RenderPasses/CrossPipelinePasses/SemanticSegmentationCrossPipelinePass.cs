@@ -1,8 +1,7 @@
-﻿using System;
-using UnityEngine.Experimental.Rendering;
+﻿using UnityEngine;
 using UnityEngine.Rendering;
 
-namespace UnityEngine.Perception.GroundTruth
+namespace Perception.GroundTruth
 {
     /// <summary>
     /// Custom Pass which renders labeled images where each object labeled with a Labeling component is drawn with the
