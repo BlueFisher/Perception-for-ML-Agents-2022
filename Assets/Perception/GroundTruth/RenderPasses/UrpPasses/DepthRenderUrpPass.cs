@@ -18,7 +18,6 @@ namespace Perception.GroundTruth
             m_OverrideMaterial = new Material(m_DepthShader);
 
             m_TargetHandle = RTHandles.Alloc(targetTexture);
-            ConfigureTarget(m_TargetHandle);
 
             renderPassEvent = RenderPassEvent.AfterRenderingPostProcessing;
         }
@@ -37,7 +36,7 @@ namespace Perception.GroundTruth
 
             commandBuffer.GetTemporaryRT(0, opaqueDesc, FilterMode.Point);
             commandBuffer.Blit(source, m_TargetHandle.nameID, m_OverrideMaterial, 0);
-            // commandBuffer.Blit(m_TargetHandle.nameID, source);
+
             context.ExecuteCommandBuffer(commandBuffer);
             CommandBufferPool.Release(commandBuffer);
         }
