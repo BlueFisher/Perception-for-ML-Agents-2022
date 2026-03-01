@@ -79,6 +79,8 @@ namespace Perception
         /// <inheritdoc/>
         public void Update()
         {
+            _perceptionCamera.ShouldManuallyCapture = true;
+            _perceptionCamera.GetComponent<Camera>().Render();
         }
 
         /// <inheritdoc/>
